@@ -1,0 +1,8 @@
+{
+	"esnext": "true",
+	"node": "true",
+	"latedef": "false",
+	"globals": [
+		"angular"
+	]
+}
