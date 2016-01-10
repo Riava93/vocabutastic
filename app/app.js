@@ -1,5 +1,13 @@
 'use strict';
 
-import './butts';
+import core from './core/core.module';
+import angular from 'angular';
 
-console.log('Hello, AJ!');
+angular.module('VC', [
+	//Shared
+	core.name
+
+	//Features
+]);
+
+import './core/bootstrap.js';

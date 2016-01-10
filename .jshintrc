@@ -1,8 +1,11 @@
 {
-	"esnext": "true",
-	"node": "true",
-	"latedef": "false",
+	"node": true,
+	"esnext": true,
+	"latedef": false,
 	"globals": [
-		"angular"
+		"require",
+		"console",
+		"angular",
+		"$"
 	]
 }
