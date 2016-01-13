@@ -1,0 +1,6 @@
+a(ui-sref='register') Register
+
+form(ng-submit='vm.submitLoginCredentials(vm.loginCreds)' novalidate=true)
+  formly-form(model='vm.loginCreds' fields='vm.loginFields' form='vm.loginForm')
+    button(type='submit' class='btn btn-primary btn-lg') Login
+

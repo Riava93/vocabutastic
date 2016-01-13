@@ -6,6 +6,7 @@
 		"require",
 		"console",
 		"angular",
-		"$"
+		"$",
+		"btoa"
 	]
 }
