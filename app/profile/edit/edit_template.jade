@@ -1,0 +1,12 @@
+nav
+  ul
+    li
+      a(ui-sref='shell.profile') Return to Profile
+
+h1 Editing {{ vm.currentUser.username | capitalize }}
+
+form(ng-submit='vm.submitEdits(vm.editUser)')
+  formly-form(model='vm.editUser', fields='vm.editFields' form='vm.editForm')
+    button.btn.btn-info.btn-lg.btn-block
+      span(ng-if='!vm.processing') Update Info
+      span(ng-if='vm.processing') Saving...

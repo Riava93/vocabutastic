@@ -1,0 +1,10 @@
+h1 {{vm.title | capitalize}}
+
+p You're doing well! Why not review [Some list name here] today and improve your score?
+
+nav
+  ul
+    li
+      a(ui-sref='shell.profileEdit') Edit Account Information
+    li
+      a(ng-click='vm.deleteUser()' href='#') Delete Account

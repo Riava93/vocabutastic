@@ -1,5 +1,7 @@
-a(ui-sref='login') Have an account with us already? Login!
+a(ui-sref='shell.login') Have an account with us already? Login!
 
 form(ng-submit='vm.register(vm.newUser)' novalidate)
   formly-form(model='vm.newUser' fields='vm.registerFields' form='vm.registerForm')
-    button(type='submit' ng-disabled='!vm.registerForm.$valid').btn.btn-warning.btn-block.btn-lg Register!!!!!
+    button(type='submit' ng-disabled='!vm.registerForm.$valid').btn.btn-warning.btn-block.btn-lg
+      span(ng-if='!vm.processing') Register
+      span(ng-if='vm.processing') Creating User...

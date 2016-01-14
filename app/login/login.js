@@ -8,12 +8,15 @@ export default angular
 	.controller('LoginController', LoginController);
 
 
-LoginController.$inject = ['AuthService', '$state', '$timeout'];
+LoginController.$inject = ['AuthService', '$state'];
 
-function LoginController(AuthService, $state, $timeout) {
+function LoginController(AuthService, $state) {
 	let vm = this;
 
-	//Function
+	//State Attributes
+	vm.processing = false;
+
+	//Functions
 	vm.submitLoginCredentials = submitLoginCredentials;
 	vm.register = register;
 
@@ -96,24 +99,37 @@ function LoginController(AuthService, $state, $timeout) {
 
 	//Function definitions
 	function register(userObj) {
+		vm.processing = true;
 		AuthService.createUser(
 			userObj.username,
 			userObj.password1)
 		.then(function(response) {
-			console.log(response);
-			$timeout(function() {
-				$state.go('login');
-			}, 2000);
-		}, function(err) {
-			console.log('There was an error. Oh noez.');
-			angular.copy({}, vm.registerForm);
+			if (response.statusText === 'UNAUTHORIZED') {
+				vm.processing = false;
+				angular.copy({}, vm.loginCreds);
+				vm.loginForm.$setPristine();
+				vm.loginForm.$setUntouched();
+			} else {
+				$state.go('shell.login');
+			}
 		});
 	}
 
 	function submitLoginCredentials(credentials) {
+		vm.processing = true;
 		AuthService.loginUser(
-			credentials.username,
-			credentials.password);
+			credentials.username.toLowerCase(),
+			credentials.password)
+		.then(function(response) {
+			if (response.statusText === 'UNAUTHORIZED') {
+				vm.processing = false;
+				angular.copy({}, vm.loginCreds);
+				vm.loginForm.$setPristine();
+				vm.loginForm.$setUntouched();
+			} else {
+				$state.go('shell.profile');
+			}
+		});
 	}
 }
 
