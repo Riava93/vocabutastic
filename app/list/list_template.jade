@@ -1,0 +1,26 @@
+h1 Hello from the ListView!
+
+// Eventually we should use a widget for each list item
+.container
+  .row
+    .col-lg-6
+      div.lists
+        ul.list
+          li(ng-repeat='list in vm.lists')
+            span {{list.name}}
+            button(ng-click='vm.startEditingList($index)') Edit
+            button(ng-click='vm.removeList($index)') X
+
+        a(ui-sref='shell.lists_new') Create a new list
+
+    .col-lg-6
+      div.list-edit(ng-if='vm.editing')
+        h2.edit-title Editing {{vm.currentlyEditingList.name | capitalize}}
+        div.exit.text-center
+          button.btn.btn-default.btn-lg(ng-click='vm.stopEditingList()') Cancel
+        form(ng-submit='vm.updateList(vm.editList)')
+          formly-form(model='vm.editList' fields='vm.listFields' form='vm.listEditForm')
+            button.btn.btn-lg.btn-success.btn-block
+              span(ng-if='!vm.processing') Update
+              span(ng-if='vm.processing') Saving...
+

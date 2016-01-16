@@ -8,94 +8,22 @@ export default angular
 	.controller('LoginController', LoginController);
 
 
-LoginController.$inject = ['AuthService', '$state'];
+LoginController.$inject = ['AuthService', '$state', 'FormService'];
 
-function LoginController(AuthService, $state) {
+function LoginController(AuthService, $state, FormService) {
+	//Config
 	let vm = this;
 
 	//State Attributes
 	vm.processing = false;
 
-	//Functions
+	//View Functions
 	vm.submitLoginCredentials = submitLoginCredentials;
 	vm.register = register;
 
 	//FormlyFrom Config
-	vm.loginFields = [
-		{
-			key: 'username',
-			type: 'input',
-			templateOptions: {
-				type: 'text',
-				label: 'Username',
-				required: true,
-				placeholder: 'awesome_username'
-			}
-		},
-
-		{
-			key: 'password',
-			type: 'input',
-			templateOptions: {
-				type: 'password',
-				label: 'Password',
-				required: true
-			}
-		}
-	];
-
-	vm.registerFields = [
-		{
-			key: 'username',
-			type: 'input',
-			templateOptions: {
-				type: 'text',
-				label: 'Username',
-				required: true,
-				placeholder: 'even_awesomer_username',
-				minlength: 6
-			}
-		},
-
-		{
-			key: 'password1',
-			type: 'input',
-			templateOptions: {
-				type: 'password',
-				label: 'Password',
-				required: true,
-				placeholder: '******',
-				minlength: 10
-			}
-		},
-
-		{
-			key: 'password2',
-			type: 'input',
-			templateOptions: {
-				type: 'password',
-				label: 'Password Confirmation',
-				required: true,
-				placeholder: '******',
-				minlength: 10
-			},
-			validators: {
-				passwordMatch: {
-					expression: function($viewValue, $modelValue) {
-						let value = $viewValue || $modelValue;
-
-						if (value !== vm.newUser.password1) {
-							return false;
-						} else {
-							return true;
-						}
-					},
-					message: 'Passwords do not match'
-				}
-			}
-		}
-	];
-
+	vm.loginFields = FormService.loginFields;
+	vm.registerFields = FormService.userFields;
 
 	//Function definitions
 	function register(userObj) {

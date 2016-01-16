@@ -12,3 +12,4 @@ require('./router');
 
 //Services
 require('./services/AuthService');
+require('./services/FormService');

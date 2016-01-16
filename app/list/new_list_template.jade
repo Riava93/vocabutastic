@@ -1,0 +1,7 @@
+h1 Create a new list
+
+form(ng-submit='vm.createList(vm.newList)')
+  formly-form(model='vm.newList' fields='vm.listFields' form='vm.newListForm')
+    button.btn.btn-lg.btn-danger.btn-block
+      span(ng-if='!vm.processing') Create List
+      span(ng-if='vm.processing') Saving...

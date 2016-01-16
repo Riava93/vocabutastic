@@ -2,10 +2,16 @@ nav.navbar-inverse
   .container
     a.navbar-brand(ui-sref='shell.profile') Vocabutastic!
 
-    ul.nav.navbar-nav.navbar-right
-      li(ng-if='vm.userLoggedIn()')
+    ul.nav.navbar-nav.navbar-right(ng-if='vm.userLoggedIn()')
+      li
+        a(ui-sref='shell.profile') Profile
+      li
+        a(ui-sref='shell.lists') Lists
+      li
         a(href='#' ng-click='vm.logout()').link Logout
-      li(ng-if='!vm.userLoggedIn()')
+
+    ul.nav.navbar-nav.navbar-right(ng-if='!vm.userLoggedIn()')
+      li
         a(href='#' ui-sref='shell.register').link Register
 
 div(ui-view)

@@ -8,6 +8,8 @@ import '../login/login_template.jade';
 import '../login/register_template.jade';
 import '../profile/profile_template.jade';
 import '../profile/edit/edit_template.jade';
+import '../list/list_template.jade';
+import '../list/new_list_template.jade';
 
 
 angular
@@ -59,5 +61,25 @@ function VocabularizeRouter($urlRouterProvider, $stateProvider) {
 			controller: 'ProfileEditController',
 			controllerAs: 'vm',
 			templateUrl: 'edit_template.jade'
+		})
+
+		.state('shell.lists', {
+			url: '/lists',
+			data: {
+				authorization: true
+			},
+			controller: 'ListController',
+			controllerAs: 'vm',
+			templateUrl: 'list_template.jade'
+		})
+
+		.state('shell.lists_new', {
+			url: '/new_list',
+			data: {
+				authorization: true
+			},
+			controller: 'ListController',
+			controllerAs: 'vm',
+			templateUrl: 'new_list_template.jade'
 		});
 }
