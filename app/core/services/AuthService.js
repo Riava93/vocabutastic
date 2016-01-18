@@ -13,14 +13,12 @@ HTTPConfig.$inject = ['$httpProvider'];
 function HTTPConfig($httpProvider) {
 	let token = sessionStorage.getItem('token') || '';
 
-	if (!!token) {
-		token = `Basic ${token}`;
-	} else { return; }
-
 	$httpProvider.interceptors.push(function() {
 		return {
 			request: function(config) {
-				config.headers.Authorization = token;
+				if (token) {
+					config.headers.Authorization = `Basic ${token}`;
+				}
 				return config;
 			}
 		};
@@ -166,7 +164,7 @@ function AuthService($http, $window, config, $state) {
 	}
 
 	function _clearHTTPHeaders() {
-		delete $http.defaults.headers['Authorization'];
+		delete $http.defaults.headers.common.Authorization;
 		$window.sessionStorage.clear();
 	}
 

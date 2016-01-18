@@ -8,6 +8,7 @@ h1 Hello from the ListView!
         ul.list
           li(ng-repeat='list in vm.lists')
             span {{list.name}}
+            button(ui-sref='shell.list_detail({list_id: list.id, list: list})') View
             button(ng-click='vm.startEditingList($index)') Edit
             button(ng-click='vm.removeList($index)') X
 

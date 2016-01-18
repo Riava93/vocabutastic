@@ -139,5 +139,30 @@ function FormService() {
 		}
 	];
 
+	//Language Pairs
+	s.pairFields = [
+		{
+			key: 'native_word',
+			type: 'input',
+			templateOptions: {
+				type: 'text',
+				required: true,
+				placeholder: 'Bus stop',
+				label: 'Native'
+			}
+		},
+
+		{
+			key: 'foreign_word',
+			type: 'input',
+			templateOptions: {
+				type: 'text',
+				required: true,
+				placeholder: 'Bushaltestellen',
+				label: 'Foreign'
+			}
+		}
+	];
+
 	return s;
 }

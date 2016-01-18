@@ -38,13 +38,17 @@ function LoginController(AuthService, $state, FormService) {
 				vm.loginForm.$setPristine();
 				vm.loginForm.$setUntouched();
 			} else {
-				$state.go('shell.login');
+				submitLoginCredentials({
+					username: userObj.username,
+					password: userObj.password1
+				});
 			}
 		});
 	}
 
 	function submitLoginCredentials(credentials) {
 		vm.processing = true;
+		// debugger;
 		AuthService.loginUser(
 			credentials.username.toLowerCase(),
 			credentials.password)

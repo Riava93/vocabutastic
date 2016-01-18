@@ -14,6 +14,7 @@ function ListService($rootScope, $http, config) {
 	return {
 		createList: createList,
 		getLists: getLists,
+		getList: getList,
 		removeList: removeList,
 		updateList: updateList
 	};
@@ -44,7 +45,20 @@ function ListService($rootScope, $http, config) {
 		});
 	}
 
+	function getList(listID) {
+		return $http({
+			method: 'GET',
+			url: `${config.apiURL}lists/${listID}`
+		})
+		.then(function(response) {
+			return response;
+		}, function(error) {
+			return error;
+		});
+	}
+
 	function removeList(listId) {
+		console.log($http.defaults.headers);
 		return $http({
 			method: 'DELETE',
 			url: `${config.apiURL}lists/${listId}`

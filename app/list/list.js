@@ -40,7 +40,6 @@ function ListController(FormService, ListService, $state, $window, $timeout) {
 
 		ListService.createList(newList)
 		.then(function(response) {
-			console.log(response);
 			if (response.statusText === 'UNAUTHORIZED') {
 				angular.copy({}, vm.newList);
 				_resetForm(vm.newListForm);
@@ -56,8 +55,6 @@ function ListController(FormService, ListService, $state, $window, $timeout) {
 
 	function removeList(idx) {
 		let mark = vm.lists[idx];
-
-		console.log(mark.id);
 
 		ListService.removeList(mark.id)
 		.then(function(response) {

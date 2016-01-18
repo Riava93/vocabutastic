@@ -1,0 +1,16 @@
+h1 Viewing {{vm.currentList.name}}
+
+hr
+
+h2 Pairs
+
+ul
+  li.single-lang-pair(ng-repeat='pair in vm.currentList.pairs')
+    span {{pair.native_word}} | {{pair.foreign_word}}
+    button(ng-click='vm.removePair($index)') X
+  li.new-pair-form
+    form(ng-submit='vm.createPair(vm.langPair)')
+      formly-form(model='vm.langPair' fields='vm.pairFields' form='vm.langPairForm')
+        button.btn.btn-warning.btn-lg.btn-block
+          span(ng-if='!vm.processing') Add
+          span(ng-if='vm.processing') Saving...
