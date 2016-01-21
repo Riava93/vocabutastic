@@ -13,3 +13,5 @@ require('./router');
 //Services
 require('./services/AuthService');
 require('./services/FormService');
+require('./services/HelperService');
+require('./services/QuizService');

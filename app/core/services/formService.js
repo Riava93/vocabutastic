@@ -2,10 +2,6 @@
 
 import angular from 'angular';
 
-//TODO: Validators need to have referrence
-//to the VM of various controllers.
-//Ex: Password1, and Password2
-
 
 angular
 	.module('VC.core')
@@ -160,6 +156,46 @@ function FormService() {
 				required: true,
 				placeholder: 'Bushaltestellen',
 				label: 'Foreign'
+			}
+		}
+	];
+
+	//Quiz Fields
+
+	s.nativeAnswerField = [
+		{
+			key: 'native_word',
+			type: 'input',
+			templateOptions: {
+				type: 'text',
+				required: true,
+				placeholder: 'Translate the word shown above.',
+				label: 'Your Answer'
+			}
+		}
+	];
+
+	s.foreignAnswerField = [
+		{
+			key: 'foreign_word',
+			type: 'input',
+			templateOptions: {
+				type: 'text',
+				required: true,
+				placeholder: 'Translate the word show above.',
+				label: 'Your Answer'
+			}
+		}
+	];
+
+	s.nativeAnswerTextarea = [
+		{
+			key: 'native_word',
+			type: 'textarea',
+			templateOptions: {
+				label: 'Your Answer',
+				placeholder: 'Translate the phrase above.',
+				required: true
 			}
 		}
 	];

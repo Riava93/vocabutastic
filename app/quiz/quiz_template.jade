@@ -1,0 +1,39 @@
+div.quiz-hero
+  .container
+
+
+    .row(ng-if='!vm.quizInProgress && !vm.showResults')
+      .col-md-12
+        h2 Review {{vm.currentList.name}}
+
+        .message(ng-if='!vm.currentList.pairs.length')
+          h4 You have nothing on this list! Add some items to start the quiz.
+
+        .options
+          a.btn.btn-default.return(ui-sref=`shell.list_detail({list_id: vm.currentList.id})`) Return to list
+          button.btn.btn-default.start(ng-if='vm.currentList.pairs.length' ng-click='vm.quizInProgress = true;') Start Quiz
+
+
+
+    .row.quiz-pages(ng-if='vm.quizInProgress && !vm.showResults')
+      .col-md-12(ng-repeat='question in vm.questions' ng-if='vm.currentQuestion === $index')
+        .foreign
+          h2 Translate: {{question.foreign_word}}
+
+        form(ng-submit='vm.nextQuestion(vm.answer)')
+          formly-form(model='vm.answer' fields='vm.answerField' form='vm.answerForm')
+            button.btn.btn-lg.btn-primary
+              span(ng-if='!vm.isProcessing') Next Question
+              span(ng-if='vm.isProcessing') Loading...
+
+        button.btn.btn-danger.btn-lg(ng-click='vm.quitQuiz()') Quit
+
+
+
+    .row(ng-if='vm.showResults')
+      .col-md-12
+        h2 You scored {{vm.userScore}}/{{vm.totalScore}}! Keep up the good work.
+
+        .options
+          a.btn.btn-default.return(ui-sref=`shell.list_detail({list_id: vm.currentList.id})`) Return to list
+          button.btn.btn-default.start(ng-if='vm.currentList.pairs.length' ng-click='vm.restartQuiz()') Restart Quiz

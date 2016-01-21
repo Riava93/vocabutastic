@@ -9,6 +9,7 @@ import login from './login/login.module';
 import profile from './profile/profile.module';
 import profile_edit from './profile/edit/edit.module';
 import lists from './list/list.module';
+import quiz from './quiz/quiz.module';
 
 
 angular.module('VC', [
@@ -20,7 +21,8 @@ angular.module('VC', [
 	login.name,
 	profile.name,
 	profile_edit.name,
-	lists.name
+	lists.name,
+	quiz.name
 ]);
 
 import './core/bootstrap.js';

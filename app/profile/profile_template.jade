@@ -1,6 +1,6 @@
 h1 {{vm.title | capitalize}}
 
-p You're doing well! Why not review [Some list name here] today and improve your score?
+p(ng-if='vm.weakest') You're doing well! Why not review #[strong{{vm.weakest.list_name}}] today and improve your score?
 
 nav
   ul
@@ -8,3 +8,13 @@ nav
       a(ui-sref='shell.profileEdit') Edit Account Information
     li
       a(ng-click='vm.deleteUser()' href='#') Delete Account
+
+
+h3 Latest Quiz Results
+
+.container
+  ul
+    li(ng-repeat='record in vm.latestRecords')
+      strong {{record.list_name}} - 
+      em {{record.user_score}}/{{record.total_score}} - 
+      small {{record.date_completed}}

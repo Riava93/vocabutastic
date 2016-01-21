@@ -11,6 +11,7 @@ import '../profile/edit/edit_template.jade';
 import '../list/list_template.jade';
 import '../list/new_list_template.jade';
 import '../list/vocab_pairs/list_detail_template.jade';
+import '../quiz/quiz_template.jade';
 
 
 angular
@@ -92,5 +93,15 @@ function VocabularizeRouter($urlRouterProvider, $stateProvider) {
 			controller: 'PairController',
 			controllerAs: 'vm',
 			templateUrl: 'list_detail_template.jade'
+		})
+
+		.state('shell.quiz', {
+			url: '/list/:list_id/quiz',
+			data: {
+				authorization: true
+			},
+			controller: 'QuizController',
+			controllerAs: 'vm',
+			templateUrl: 'quiz_template.jade'
 		});
 }
